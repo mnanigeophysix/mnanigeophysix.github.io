@@ -21,12 +21,11 @@
         .nav-links a { color: white; text-decoration: none; transition: color 0.3s ease, font-weight 0.2s; }
         .nav-links a:hover { color: #f4c430; font-weight: bold; }
         .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 28px; cursor: pointer; }
-        /* Page section styles */
         section { padding: 80px 0 0 0; }
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 18px; color: #1e3c72; }
         .section-subtitle { text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        @media (max-width: 900px) { .hero-content { grid-template-columns: 1fr; text-align: center; } .hero-logo-box { width: 220px; height: 220px; } .hero-logo-box img { width: 140px; height: 140px; } .promo-video-box video { width: 95vw; min-width: 220px; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu-btn { display: block; } .contact-grid { grid-template-columns: 1fr; } .cta-buttons { flex-direction: column; align-items: center; } }
+        @media (max-width: 900px) { .hero-content { grid-template-columns: 1fr; text-align: center; } .hero-logo-box { width: 220px; height: 220px; } .hero-logo-box img { width: 140px; height: 140px; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu-btn { display: block; } .contact-grid { grid-template-columns: 1fr; } .cta-buttons { flex-direction: column; align-items: stretch; } }
         /* Home Hero */
         .hero-section {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -62,9 +61,8 @@
         .btn-whatsapp { background: #25D366; color: white; display: flex; align-items: center; gap: 8px; }
         .btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.22); }
         .hero-visual { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 420px; }
-        .hero-logo-box { width: 400px; height: 400px; background: rgba(255,255,255,0.10); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 48px rgba(0,0,0,0.22); position: relative; margin: auto; animation: logoBounce 2.2s infinite alternate; }
+        .hero-logo-box { width: 400px; height: 400px; background: rgba(255,255,255,0.10); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 48px rgba(0,0,0,0.15); }
         .hero-logo-box img { width: 260px; height: 260px; border-radius: 50%; object-fit: contain; background: linear-gradient(135deg, #1e3c72, #2a5298); box-shadow: 0 2px 34px rgba(0,0,0,0.19); }
-        @keyframes logoBounce { 0%{transform:scale(1);} 70%{transform:scale(1.06);} 100%{transform:scale(1.03);} }
         .floating-elements { position: absolute; top: -38px; right: -38px; width: 120px; height: 120px; background: rgba(244, 196, 48, 0.15); border-radius: 50%; animation: float 6s ease-in-out infinite; }
         @keyframes float { 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-20px);} }
         .promo-video-box { margin-top: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; animation: fadeInScale 2s cubic-bezier(.7,1.8,.5,1) 1; }
@@ -128,15 +126,83 @@
             border-top: 4px solid #f4c430;
         }
         .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15);}
-        .service-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #1e3c72, #2a5298); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: white; font-size: 24px; }
+        .service-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #1e3c72, #2a5298); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 2rem; color: #fff; }
         /* Projects */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 40px; }
-        .project-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .project-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; display: flex; flex-direction: column; cursor: pointer; }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-        .project-image { width: 100%; height: 200px; object-fit: cover; background: linear-gradient(135deg, #2d5016, #4a7c59); position: relative; transition: opacity 0.5s; opacity: 0; }
+        .project-image { width: 100%; height: 200px; object-fit: cover; background: linear-gradient(135deg, #2d5016, #4a7c59); position: relative; transition: opacity 0.5s; opacity: 1; }
         .project-content { padding: 25px; }
         .project-title { font-size: 1.3rem; color: #1e3c72; margin-bottom: 5px; }
         .project-desc { color: #666; }
+        /* Project Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(30,60,114,0.92); z-index: 9999; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: white;
+            border-radius: 18px;
+            max-width: 900px;
+            width: 96vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px 32px 32px 32px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.40);
+            position: relative;
+            animation: fadeInScale 0.4s cubic-bezier(.7,1.8,.5,1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 2rem;
+            color: #1e3c72;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 10;
+        }
+        .modal-img {
+            display: block;
+            margin: 0 auto 28px auto;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+            background: #f8f9fa;
+        }
+        .modal-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1e3c72;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+        .modal-desc {
+            color: #333;
+            font-size: 1.16rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        .modal-details-list {
+            color: #333;
+            font-size: 1.08rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            padding-left: 24px;
+        }
+        .modal-meta {
+            text-align: center;
+            color: #f4c430;
+            margin-top: 14px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        @media (max-width: 600px) {
+            .modal-content { padding: 16px 4vw 16px 4vw; }
+            .modal-title { font-size: 1.3rem; }
+            .modal-desc, .modal-details-list { font-size: 1rem; }
+        }
         /* Contact */
         .contact-section { background: #1e3c72; color: white; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
@@ -157,7 +223,7 @@
         .footer-section ul { list-style: none; color: #ccc; line-height: 1.8; }
         .footer-section p { color: #ccc; }
         .footer .social-links { display: flex; justify-content: flex-start; gap: 12px; margin: 10px 0; }
-        .footer .social-links a { font-size: 22px; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; margin-right: 5px; background: #222; color: #fff; transition: background 0.2s; }
+        .footer .social-links a { font-size: 22px; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; margin-right: 5px; }
         .footer .social-links a.whatsapp { background: #25D366; }
         .footer .social-links a.linkedin { background: #0077b5; }
         .footer .social-links a.email { background: #ea4335; }
@@ -371,44 +437,51 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">
-                Showcasing our expertise through impactful geospatial solutions across Papua New Guinea
+                Explore our impactful geospatial solutions, each project revealing a unique story of how GIS and remote sensing empower Papua New Guinea’s communities, government, and industries.
             </p>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" data-project="boundary-map">
                     <img class="project-image" src="Boundary%20Map.jpeg" alt="Boundary Map of PNG" loading="lazy">
                     <div class="project-content">
                         <div class="project-title">PNG Provincial Boundary Map</div>
-                        <div class="project-desc">High-resolution mapping of PNG province boundaries for governance, planning, and land administration.</div>
+                        <div class="project-desc">High-resolution mapping of PNG province boundaries for governance, planning, and land administration. <span style="color:#0077b5;font-size:13px;text-decoration:underline;cursor:pointer;">Click to view details</span></div>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" data-project="solar">
                     <img class="project-image" src="Direct%20Solar%20Radiation%20Map.png" alt="Direct Solar Radiation Map" loading="lazy">
                     <div class="project-content">
                         <div class="project-title">Direct Solar Radiation Analysis</div>
-                        <div class="project-desc">Solar radiation resource mapping for renewable energy site assessment and solar farm feasibility studies.</div>
+                        <div class="project-desc">Solar radiation resource mapping for renewable energy site assessment and solar farm feasibility studies. <span style="color:#0077b5;font-size:13px;text-decoration:underline;cursor:pointer;">Click to view details</span></div>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" data-project="wehliem">
                     <img class="project-image" src="Mt.Wehliem_final_Edit.png" alt="Mt. Wehliem Mapping" loading="lazy">
                     <div class="project-content">
                         <div class="project-title">Mt. Wehliem Geospatial Mapping</div>
-                        <div class="project-desc">Topographic and land-use analysis for Mt. Wehliem region, supporting sustainable land management.</div>
+                        <div class="project-desc">Topographic and land-use analysis for Mt. Wehliem region, supporting sustainable land management. <span style="color:#0077b5;font-size:13px;text-decoration:underline;cursor:pointer;">Click to view details</span></div>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" data-project="rainfall">
                     <img class="project-image" src="Rainfall%20Map.bmp" alt="Rainfall Map PNG" loading="lazy">
                     <div class="project-content">
                         <div class="project-title">PNG Rainfall Distribution Map</div>
-                        <div class="project-desc">Spatial analysis of rainfall patterns for agricultural planning, water resource management, and climate research.</div>
+                        <div class="project-desc">Spatial analysis of rainfall patterns for agricultural planning, water resource management, and climate research. <span style="color:#0077b5;font-size:13px;text-decoration:underline;cursor:pointer;">Click to view details</span></div>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" data-project="volcano">
                     <img class="project-image" src="Volcanic%20Risk%20Map.jpeg" alt="Volcanic Risk Map PNG" loading="lazy">
                     <div class="project-content">
                         <div class="project-title">PNG Volcanic Risk Assessment</div>
-                        <div class="project-desc">Hazard and risk mapping of volcanic regions to support disaster mitigation and community safety planning.</div>
+                        <div class="project-desc">Hazard and risk mapping of volcanic regions to support disaster mitigation and community safety planning. <span style="color:#0077b5;font-size:13px;text-decoration:underline;cursor:pointer;">Click to view details</span></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Modal for project details (hidden by default) -->
+        <div class="modal-overlay" id="projectModal">
+            <div class="modal-content" id="modalContent">
+                <button class="modal-close" id="modalCloseBtn">&times;</button>
+                <div id="modalInner"></div>
             </div>
         </div>
     </section>
@@ -565,6 +638,7 @@
         </div>
     </footer>
     <script>
+        // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -574,6 +648,106 @@
                 }
             });
         });
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.nav');
-            nav.style.background = window.scrollY > 100 ? 'rgba(30, 60, 114
+
+        // Project Modal Data
+        const projects = {
+            "boundary-map": {
+                title: "PNG Provincial Boundary Map",
+                img: "Boundary%20Map.jpeg",
+                desc: `<strong>Precise Governance & Land Management</strong><br>
+                Our flagship Provincial Boundary Map is a meticulously digitized, high-resolution map covering all provinces of Papua New Guinea. Developed using authoritative administrative datasets, field GPS surveys, and satellite imagery, this map is a fundamental resource for government planning, land administration, and dispute resolution.<br><br>
+                <ul class="modal-details-list">
+                    <li><b>Purpose:</b> To support government agencies, landowners, and NGOs in transparent land demarcation and resource allocation.</li>
+                    <li><b>Methodology:</b> GIS-based integration of legal boundary definitions, field mapping, and remote sensing validation.</li>
+                    <li><b>Impact:</b> Streamlines delivery of government services, enables accurate census and resource management, and reduces land conflict.</li>
+                </ul>
+                <div class="modal-meta">Project Lead: Avese ISO | Completed: 2025 | <span style="color:#1e3c72;">Empowering Governance</span></div>`
+            },
+            "solar": {
+                title: "Direct Solar Radiation Analysis",
+                img: "Direct%20Solar%20Radiation%20Map.png",
+                desc: `<strong>Unlocking Renewable Energy Potential</strong><br>
+                Our solar resource assessment maps identify the most promising locations for solar energy development across PNG. Using advanced remote sensing, meteorological models, and terrain analysis, we provide detailed solar irradiance and site suitability maps.<br><br>
+                <ul class="modal-details-list">
+                    <li><b>Purpose:</b> To empower investors, communities, and planners in making informed decisions for solar farm siting and rural electrification.</li>
+                    <li><b>Methodology:</b> Integration of MODIS/Landsat satellite data, ground weather stations, and GIS slope/aspect analysis.</li>
+                    <li><b>Impact:</b> Accelerates PNG's transition to clean energy, reduces carbon footprint, and supports sustainable development.</li>
+                </ul>
+                <div class="modal-meta">Project Lead: Avese ISO | Year: 2025 | <span style="color:#f4c430;">Renewable Energy for PNG</span></div>`
+            },
+            "wehliem": {
+                title: "Mt. Wehliem Geospatial Mapping",
+                img: "Mt.Wehliem_final_Edit.png",
+                desc: `<strong>Sustainable Land-Use for Highland Communities</strong><br>
+                This project delivered comprehensive topographic, land-cover, and land-use maps for the Mt. Wehliem region. Our analysis supports sustainable agriculture, land tenure documentation, and conservation planning.<br><br>
+                <ul class="modal-details-list">
+                    <li><b>Purpose:</b> To provide landowners and local councils with clear, actionable spatial data for development and conservation.</li>
+                    <li><b>Methodology:</b> Drone-based mapping, field GPS surveys, and multi-sensor satellite image classification.</li>
+                    <li><b>Impact:</b> Directly improves land management, food security, and environmental resilience for highland communities.</li>
+                </ul>
+                <div class="modal-meta">Project Partners: Local Councils | Year: 2025 | <span style="color:#28a745;">Empowering Highlands</span></div>`
+            },
+            "rainfall": {
+                title: "PNG Rainfall Distribution Map",
+                img: "Rainfall%20Map.bmp",
+                desc: `<strong>Climate Insights for Agriculture & Water Security</strong><br>
+                Our rainfall distribution maps leverage decades of meteorological records and remote sensing to reveal the spatial patterns of precipitation across PNG. These maps are vital for agricultural planning, infrastructure design, and climate research.<br><br>
+                <ul class="modal-details-list">
+                    <li><b>Purpose:</b> To inform farmers, water authorities, and researchers about regional rainfall variability and trends.</li>
+                    <li><b>Methodology:</b> Multi-year weather station data, radar imagery, and spatial interpolation with GIS.</li>
+                    <li><b>Impact:</b> Enables climate-adaptive agriculture, optimizes water resource management, and supports disaster preparedness.</li>
+                </ul>
+                <div class="modal-meta">Project Lead: Penniel HATABA | Year: 2025 | <span style="color:#17a2b8;">Building Resilience</span></div>`
+            },
+            "volcano": {
+                title: "PNG Volcanic Risk Assessment",
+                img: "Volcanic%20Risk%20Map.jpeg",
+                desc: `<strong>Safeguarding Lives & Livelihoods</strong><br>
+                Our volcanic risk mapping synthesizes geological, geophysical, and demographic data to identify hazard zones and vulnerable populations. The maps guide disaster risk reduction, evacuation planning, and community awareness.<br><br>
+                <ul class="modal-details-list">
+                    <li><b>Purpose:</b> To support disaster managers and communities in proactive risk management in volcanic regions.</li>
+                    <li><b>Methodology:</b> Integration of satellite thermal imagery, geological surveys, and socioeconomic datasets.</li>
+                    <li><b>Impact:</b> Saves lives, reduces property loss, and strengthens community preparedness for volcanic hazards.</li>
+                </ul>
+                <div class="modal-meta">Client: PNG National Disaster Centre | Year: 2025 | <span style="color:#dc3545;">Disaster Risk Reduction</span></div>`
+            },
+        };
+
+        // Project modal handlers
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const key = this.getAttribute('data-project');
+                const modal = document.getElementById('projectModal');
+                const inner = document.getElementById('modalInner');
+                if (projects[key]) {
+                    inner.innerHTML = `
+                        <div class="modal-title">${projects[key].title}</div>
+                        <img class="modal-img" src="${projects[key].img}" alt="${projects[key].title}">
+                        <div class="modal-desc">${projects[key].desc}</div>
+                    `;
+                    modal.classList.add('active');
+                    document.body.style.overflow = "hidden";
+                }
+            });
+        });
+        document.getElementById('modalCloseBtn').onclick = function() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = "";
+        };
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = "";
+            }
+        });
+
+        // Optional: Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                document.getElementById('projectModal').classList.remove('active');
+                document.body.style.overflow = "";
+            }
+        });
+    </script>
+</body>
+</html>
